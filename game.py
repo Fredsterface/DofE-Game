@@ -4,6 +4,8 @@ P = Person()
 G = GameState(P, startRoom)
 
 def parseUserInput(G, userInput):
+    if userInput[0] == 'quit':
+        quit()
     if userInput[0] == 'go':
         if userInput[1] == 'north' or userInput[1] == 'n':
             G.go('N')
