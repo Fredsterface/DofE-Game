@@ -16,7 +16,7 @@
         <h3> Exits are </h3>
         <ul>
             {% for e in G.room.exits.keys() %}
-                <li>{{ config['Directions'][e] }}</li>
+                <li>{{ config['Directions'][e] }} &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; {{G.room.exits[e].shortDescription}}</li>
             {% endfor %}
         </ul>
         {% endif %}        
