@@ -1,34 +1,61 @@
+<!doctype html>
 <html>
-    <head>
-        <title>{{ title }} - Freddie's Text Adventure Game</title>
-    </head>
-    <body>
-    <h3> You are in {{ G.room.description }} </h3>
-    {% if G.room.items|length > 0 %}
-        <h3> You can see </h3>
-        <ul>
-            {% for item in G.room.items %}
-                <li>{{ item.__str__() }}</li>
-            {% endfor %}
-        </ul>
+
+<head>
+    <title>Freddie's DofE Text Adventure Game</title>
+    <style type="text/css">
+        * {
+            font-family: "Comic Sans MS", cursive, sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <h3> {{ G.room.shortDescription}} </h3>
+    <p> You are in {{ G.room.description }} </p>
+    <h4> You can see </h4>
+    <ul>
+        {% if G.room.items|length > 0 %}
+        {% for item in G.room.items %}
+        <li>{{ item.__str__() }}</li>
+        {% endfor %}
+        {% else %}
+        <li> Nothing </li>
         {% endif %}
+    </ul>
+
     {% if G.room.exits|length > 0 %}
-        <h3> Exits are </h3>
-        <ul>
-            {% for e in G.room.exits.keys() %}
-                <li>{{ config['Directions'][e] }} &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; {{G.room.exits[e].shortDescription}}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}        
-    {% if G.person.items|length > 0 %}
-        <h3> You are carrying </h3>
-            {% for item in G.person.items %}
-                <li>{{ item.__str__() }}</li>
-            {% endfor %}
-        </ul>
+    <h3> Exits are </h3>
+    <ul>
+        {% for e in G.room.exits.keys() %}
+        <li>{{ config['Directions'][e] }} to {{G.room.exits[e].shortDescription}}</li>
+        {% endfor %}
+    </ul>
     {% endif %}
-    </body>
+    {% if G.person.items|length > 0 %}
+    <h3> You are carrying </h3>
+    <ul>
+        {% for item in G.person.items %}
+        <li>{{ item.__str__() }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% with flash = get_flashed_messages() %}
+    {% if flash %}
+    <ul style="list-style-type:none">
+        </li>{{ flash[0]}}</li>
+    </ul>
+    {% endif %}
+    {% endwith %}
     <form method="POST">
         <input name="text" autofocus autocomplete="off">
     </form>
+    <br>
+    <br>
+    <form action="/newgame">
+        <button type="submit">New game</button>
+    </form>
+</body>
+
 </html>
