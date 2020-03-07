@@ -1,4 +1,4 @@
-from classes import Room, Person, Item, GameState
+from classes import Room, Person, Item, GameState, Enemy
 from types import MethodType
 
 #Define some items
@@ -22,6 +22,9 @@ boots = Item('Walking boots',['boots', 'walking boots', 'shoes'])
 
 stick = Item('Stick',['stick', 'twig', 'branch'])
 
+#Define some enemies
+
+cow = Enemy('Cow')
 
 
 #Construct some rooms
@@ -47,6 +50,7 @@ Road1.shortDescription = "Road"
 Field1 = Room()
 Field1.description = 'A field with cow'
 Field1.shortDescription = 'Cow field'
+Field1.addEnemy(cow)
 #Cow as obsticle. Blocking exit
 #Use food to lure cow away from exit to proceed
 

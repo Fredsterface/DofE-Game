@@ -28,7 +28,7 @@
     <h3> Exits are </h3>
     <ul>
         {% for e in G.room.exits.keys() %}
-        <li>{{ config['Directions'][e] }} to {{G.room.exits[e].shortDescription}}</li>
+        <li>{{ Directions[e] }} to {{G.room.exits[e].shortDescription}}</li>
         {% endfor %}
     </ul>
     {% endif %}
@@ -53,7 +53,7 @@
     </form>
     <br>
     <br>
-    <form action="/newgame">
+    <form action="/newGame">
         <button type="submit">New game</button>
     </form>
 </body>
